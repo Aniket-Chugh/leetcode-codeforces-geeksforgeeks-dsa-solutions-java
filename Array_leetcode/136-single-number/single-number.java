@@ -1,12 +1,22 @@
 class Solution {
-     public int singleNumber(int[] nums) {
-        int result = 0;
+    public int singleNumber(int[] nums) {
+        Arrays.sort(nums);
+        int ans = 0;
+        int i = 0;
 
-        // XOR all elements — duplicates cancel out
-        for (int num : nums) {
-            result ^= num;
+        while (i < nums.length - 1) {
+            if (nums[i] == nums[i + 1]) {
+                i += 2;
+            } else {
+                ans = nums[i];
+                break;
+            }
         }
 
-        return result;
+        if (i == nums.length - 1) {
+            ans = nums[i];
+        }
+
+        return ans;
     }
 }
